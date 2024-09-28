@@ -1,14 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const methodOverride = require('method-override');
 const connectDB = require('./config/db.js');
+const methodOverride = require('method-override');
 const useroutes = require('./routes/useroutes.js')
-// const path = require('path')
+
 
 const app = express();
-app.set('view engine', 'ejs');
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+// app.use(express.urlencoded({ extended: true })); // To handle form data
+app.use(methodOverride('_method')); 
 
 app.use(express.json());
 

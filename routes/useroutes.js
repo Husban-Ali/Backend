@@ -23,6 +23,7 @@ router.post('/admin/teammember', addTeamMember);
 // Route to delete a team member
 router.delete('/admin/teammember/:id', deleteTeamMember);
 
+
 // Admin route
 router.get('/admin', async (req, res) => {
     try {
