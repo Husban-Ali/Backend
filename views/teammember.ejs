@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members</title>
+</head>
+<body>
+    <h1>Team Members</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Expertise</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (teamMembers && teamMembers.length > 0) { %>
+                <% teamMembers.forEach(function(member, index) { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= member.name %></td>
+                        <td><%= member.email %></td>
+                        <td><%= member.expertise %></td>
+                        <td>
+                            <form action="/admin/teammember/<%= member._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5">No team members found.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <h2>Add Team Member</h2>
+    <form action="/admin/teammember" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="expertise" placeholder="Expertise" required>
+        <button type="submit">Add Team Member</button>
+    </form>
+</body>
+</html>
